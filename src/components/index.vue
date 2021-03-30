@@ -1,7 +1,7 @@
 <template>
   <div>
 
-
+<!--这里修改背景图-->
     <div class="mod_search" role="search"
          style="background-image:url(http://gxmz.art.bift.edu.cn/app/images/mainbg.jpg);">
       <!--      <div class="mod_search_input">-->
@@ -12,7 +12,7 @@
       <!--      </div>-->
       <el-form style="padding-top: 255px; margin: 0 auto;">
         <el-form-item style="padding-left: 35%;">
-          <el-input style="width: 40%;height: 50px; " v-model="text">
+          <el-input style="width: 40%;height: 50px; " v-model="text" >
             <i slot="suffix" class="el-icon-search el-input__icon"></i>
           </el-input>
           <el-button size="medium" style="margin-left: 20px;" type="primary" @click="dialogVisible=true">高级筛选</el-button>
@@ -20,40 +20,41 @@
       </el-form>
 
 
+
     </div>
 
     <div style="width: 55%; margin:0 auto; padding-top: 40px;">
       <el-divider content-position="center" style="background-color:#E9E9E9;">为您推荐</el-divider>
       <el-row>
-        <el-col :span="4" v-for="(o, index) in 5" :key="o" :offset="index > 0 ? 1 : 0"  style="padding-top: 30px;">
+        <el-col :span="4" v-for="(o, index) in phase1" :key="o" :offset="index > 0 ? 1 : 0"  style="padding-top: 30px;">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+            <img :src="o.img" class="image">
             <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
+              <span>{{ o.name }}</span>
               <div class="bottom clearfix">
-                <time class="time">lalalallalalalalala</time>
+                <time class="time">{{o.description}}</time>
               </div>
             </div>
           </el-card>
         </el-col>
-        <el-col :span="4" v-for="(o, index) in 5" :key="o" :offset="index > 0 ? 1 : 0"  style="padding-top: 30px;">
+        <el-col :span="4" v-for="(o, index) in phase2" :key="o" :offset="index > 0 ? 1 : 0"  style="padding-top: 30px;">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+            <img :src="o.img" class="image">
             <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
+              <span>{{ o.name }}</span>
               <div class="bottom clearfix">
-                <time class="time">lalalallalalalalala</time>
+                <time class="time">{{o.description}}</time>
               </div>
             </div>
           </el-card>
         </el-col>
-        <el-col :span="4" v-for="(o, index) in 5" :key="o" :offset="index > 0 ? 1 : 0"  style="padding-top: 30px;padding-bottom: 30px;">
+        <el-col :span="4" v-for="(o, index) in phase3" :key="o" :offset="index > 0 ? 1 : 0"  style="padding-top: 30px;padding-bottom: 30px;">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+            <img :src="o.img" class="image">
             <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
+              <span>{{ o.name }}</span>
               <div class="bottom clearfix">
-                <time class="time">lalalallalalalalala</time>
+                <time class="time">{{o.description}}</time>
               </div>
             </div>
           </el-card>
@@ -67,15 +68,13 @@
         :visible.sync="dialogVisible"
         title="高级筛选"
         width="40%">
-      <span style="">高级筛选</span>
       <el-collapse v-model="activeName" accordion>
         <el-collapse-item title="出版时间" name="1">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="出版机构" name="2">
-          <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-          <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+          <el-button v-for="x in departments" :key="x" size="mini"> {{x}}</el-button>
         </el-collapse-item>
         <el-collapse-item title="出版地区" name="3">
           <div>简化流程：设计简洁直观的操作流程；</div>
@@ -84,51 +83,50 @@
         </el-collapse-item>
         <el-collapse-item title="学科" name="4">
           <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-          <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+          <div>结果可控：用户可以自由的进行操作，包括撤销,回退和终止当前操作等。</div>
         </el-collapse-item>
         <el-collapse-item title="责任者" name="5">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="学制" name="6">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="审定机构" name="7">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="学习者类别" name="8">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="教育类型" name="9">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="性别" name="10">
-        <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-        <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+        <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+        <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="适用年级" name="11">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="适用范围" name="12">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
         <el-collapse-item title="主题" name="13">
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>与现实生活一致：与现实生活的流程,逻辑保持一致，遵循用户习惯的语言和概念；</div>
+          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式,图标和文本,元素的位置等。</div>
         </el-collapse-item>
       </el-collapse>
       <el-tag
           :key="tag"
           v-for="tag in dynamicTags"
           closable
-          :disable-transitions="false"
-          @close="handleClose(tag)" style="margin-top: 20px;">
+          :disable-transitions="false" style="margin-top: 20px;">
         {{tag}}
       </el-tag>
       <span slot="footer" class="dialog-footer">
@@ -147,22 +145,25 @@ export default {
   name: "index",
   data() {
     return {
-      background: config.index_background,
+      background: config.index.bgc,
       dialogVisible: false,
-      activeName: '1',
-      dynamicTags: ["女子", "上海", "商务印书馆"],
-      text: ""
+      activeName: '2',
+      dynamicTags: config.index.dynamicTags,
+      text: "",
+      departments: config.index.departments,
+      phase1: config.index.phase1,
+      phase2: config.index.phase2,
+      phase3: config.index.phase3,
     }
   }
 }
 </script>
 
 <style>
-.el-input__inner {
-  background-color: rgba(0, 0, 0, 0.1);
-  color:#fff;
-}
-
+/*.el-input >>> .el-input__inner {*/
+/*  background-color: rgba(0, 0, 0, 0.1);*/
+/*  color:#fff;*/
+/*}*/
 html {
   display: block;
 }

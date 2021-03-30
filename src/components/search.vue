@@ -1,7 +1,7 @@
 <template>
-  <el-container id="system__container" >
+  <el-container id="system__container">
     <el-header id="system__header" height="60px">
-      <el-menu router class="el-menu-demo" text-color="#090909"  mode="horizontal">
+      <el-menu class="el-menu-demo" mode="horizontal" router text-color="#090909">
         <el-submenu index="1">
           <template slot="title">分类导航</template>
           <el-submenu index="1-1">
@@ -121,40 +121,99 @@
           <el-menu-item index="4-3">主题分析</el-menu-item>
         </el-submenu>
         <el-menu-item>
-          <el-input style="width: 400px;" v-model="text">
+          <el-input v-model="text" style="width: 400px;">
             <i slot="suffix" class="el-icon-search el-input__icon"></i>
           </el-input>
         </el-menu-item>
       </el-menu>
     </el-header>
-    <el-main  id="system__main">
-      hello
+    <el-main id="system__main">
+      <div style="width: 75%; margin: 0 auto;">
+      <div class="header-back" style="background-image: url(http://gxmz.art.bift.edu.cn/media/system/people/ed0718b5b8c7003eae8b2254d25968a3.jpg);">
+        <!--     在此处修改背景图    -->
+      </div>
+      <div class="mf-container">
+        <div class="page-intro">
+          <div class="title ng-binding">国文</div>
+          <!--        在此处修改描述-->
+        </div>
+      </div>
+
+        <el-table :data="tableData" stripe style="width: 60%; margin: 20px auto; ">
+          <el-table-column prop="title" label="标题" style="width: 20%;" sortable></el-table-column>
+          <el-table-column prop="charge" label="责任者" style="width: 20%;" sortable></el-table-column>
+          <el-table-column prop="publish" label="出版机构" style="width: 20%;" sortable></el-table-column>
+          <el-table-column prop="location" label="出版地" style="width: 20%;" sortable></el-table-column>
+          <el-table-column prop="suit" label="适用对象" style="width: 20%;" sortable></el-table-column>
+        </el-table>
+      </div>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import config from "@/config";
+
 export default {
-name: "search"
+  name: "search",
+  data() {
+    return {
+      text: "国文",
+      tableData: config.search.tableData
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style>
+.header-back {
+  width: 1200px;
+  height: 520px;
+  margin: auto;
+}
+.el-input__inner {
+  background-color: #E9E9E9;
+  color: #000;
+}
 #system__header {
   padding: 0 0;
   margin: 0;
 }
+
 #system__container {
   padding: 0 0;
   margin: 0;
   height: 100%;
 }
+
 #system__main {
   padding: 0 0;
   margin: 0;
 }
-.el-input__inner {
-  background-color: #f8f8f8;
-  color: #7a7a7a;
+.mf-container {
+  width: 100%;
+  margin:0 auto;
+}
+.page-intro {
+  margin-top: 20px;
+  border-bottom: 1px solid #c9cac7;
+  padding-bottom: 25px;
+}
+.page-intro .title {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.page-intro .detail {
+  line-height: 2;
+  max-height: 110px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  text-align: justify;
+}
+.page-intro .more {
+  float: right;
+  color: #3c51ac;
+  cursor: pointer;
 }
 </style>
