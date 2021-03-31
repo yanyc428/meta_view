@@ -49,13 +49,17 @@
 
             <el-submenu index="1-3-2">
               <template slot="title">教育类型</template>
-              <el-menu-item index="1-3-2-1">学前教育</el-menu-item>
-              <el-menu-item index="1-3-2-2">初等小学教育</el-menu-item>
-              <el-menu-item index="1-3-2-3">高等小学教育</el-menu-item>
-              <el-menu-item index="1-3-2-4">初等中学教育</el-menu-item>
-              <el-menu-item index="1-3-2-5">高等中学教育</el-menu-item>
-              <el-menu-item index="1-3-2-6">职业教育</el-menu-item>
-              <el-menu-item index="1-3-2-7">师范教育</el-menu-item>
+              <el-submenu index="1-3-2-1">
+                <template slot="title">普通教育</template>
+                <el-menu-item index="1-3-2-1-1">学前教育</el-menu-item>
+                <el-menu-item index="1-3-2-1-2">初等小学教育</el-menu-item>
+                <el-menu-item index="1-3-2-1-3">高等小学教育</el-menu-item>
+                <el-menu-item index="1-3-2-1-4">初等中学教育</el-menu-item>
+                <el-menu-item index="1-3-2-1-5">高等中学教育</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="1-3-2-2">职业教育</el-menu-item>
+              <el-menu-item index="1-3-2-3">师范教育</el-menu-item>
+              <el-menu-item index="1-3-2-4">其他</el-menu-item>
             </el-submenu>
 
             <el-submenu index="1-3-3">
